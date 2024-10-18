@@ -2,96 +2,97 @@
 using System.Numerics;
 using UniqueryPlus.Collections;
 
-namespace MonkeyFinder.ViewModel;
-
-public partial class NftViewModel : BaseViewModel
+namespace MonkeyFinder.ViewModel
 {
-    [ObservableProperty]
-    private ICollectionBase currentCollection;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(FloorPriceText))]
-    private BigInteger floorPrice;
-
-    public string FloorPriceText => String.Format("Floor price: {0:0.00} DOT", (double)FloorPrice / double.Pow(10, 10));
-
-    // Constructor
-    public NftViewModel()
+    public partial class NftViewModel : BaseViewModel
     {
-        Title = "NFT Finder";
+        [ObservableProperty]
+        private ICollectionBase currentCollection;
 
-        Task task = InitializeRandomCollectionAsync();
-    }
-    // Initialize the first collection
-    private async Task InitializeRandomCollectionAsync()
-    {
-        try
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FloorPriceText))]
+        private BigInteger floorPrice;
+
+        public string FloorPriceText => String.Format("Floor price: {0:0.00} DOT", (double)FloorPrice / double.Pow(10, 10));
+
+        // Constructor
+        public NftViewModel()
+        {
+            Title = "NFT Finder";
+
+            Task task = InitializeRandomCollectionAsync();
+        }
+        // Initialize the first collection
+        private async Task InitializeRandomCollectionAsync()
+        {
+            try
+            {
+                await LoadNextCollectionAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to load NFT: {ex.Message}");
+            }
+        }
+
+
+        [ObservableProperty]
+        bool isRefreshing;
+
+        async Task LoadNextCollectionAsync()
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+
+                CurrentCollection = await UniqueryPlusService.GetRandomCollectionAsync();
+
+                var fullCollection = await CurrentCollection.GetFullAsync();
+
+                FloorPrice = ((ICollectionStats)fullCollection).FloorPrice;
+
+
+                Console.WriteLine(CurrentCollection.Metadata.Name);
+                Console.WriteLine(CurrentCollection.Metadata.Image);
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to get NFTs: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+                IsRefreshing = false;
+            }
+        }
+
+        // Volba Ano - přidá NFT do oblíbených a zobrazí další
+        [RelayCommand]
+        async Task SelectYesAsync()
+        {
+
+            await LoadNextCollectionAsync();
+        }
+
+        // Volba Ne - pouze zobrazí další NFT
+        [RelayCommand]
+        async Task SelectNoAsync()
         {
             await LoadNextCollectionAsync();
         }
-        catch (Exception ex)
+
+
+        [RelayCommand]
+        async Task GoToDetailsAsync()
         {
-            Debug.WriteLine($"Unable to load NFT: {ex.Message}");
+            await Task.Delay(1);
         }
     }
 
-
-    [ObservableProperty]
-    bool isRefreshing;
-
-    async Task LoadNextCollectionAsync()
-    {
-        if (IsBusy)
-            return;
-
-        try
-        {
-            IsBusy = true;
-
-            CurrentCollection = await UniqueryPlusService.GetRandomCollectionAsync();
-
-            var fullCollection = await CurrentCollection.GetFullAsync();
-
-            FloorPrice = ((ICollectionStats)fullCollection).FloorPrice;
-
-
-            Console.WriteLine(CurrentCollection.Metadata.Name);
-            Console.WriteLine(CurrentCollection.Metadata.Image);
-
-
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"Unable to get NFTs: {ex.Message}");
-            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
-        }
-        finally
-        {
-            IsBusy = false;
-            IsRefreshing = false;
-        }
-    }
-
-    // Volba Ano - přidá NFT do oblíbených a zobrazí další
-    [RelayCommand]
-    async Task SelectYesAsync()
-    {
-       
-        await LoadNextCollectionAsync();
-    }
-
-    // Volba Ne - pouze zobrazí další NFT
-    [RelayCommand]
-   async Task SelectNoAsync()
-    {
-      await LoadNextCollectionAsync();
-    }
-
-
-    [RelayCommand]
-    async Task GoToDetailsAsync()
-    {
-        await Task.Delay(1);
-    }
 }
-

@@ -1,1 +1,0 @@
-C:\Users\petrp\source\repos\1dotnet-maui-workshop\Part 6 - AppThemes\MonkeyFinder\MonkeyFinder.csproj;x64

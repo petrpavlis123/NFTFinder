@@ -1,9 +1,10 @@
-namespace MonkeyFinder;
-
-public partial class AppShell : Shell
+namespace MonkeyFinder
 {
-	public AppShell()
-	{
-		InitializeComponent();
-	}
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            InitializeComponent();
+        }
+    }
 }
