@@ -1,56 +1,64 @@
-﻿public partial class NftViewModel : BaseViewModel
+﻿using MonkeyFinder.Services;
+using System.Numerics;
+using UniqueryPlus.Collections;
+
+namespace MonkeyFinder.ViewModel;
+
+public partial class NftViewModel : BaseViewModel
 {
-    public ObservableCollection<NFT> NFTs { get; } = new();
-    public ObservableCollection<NFT> FavoriteNFTs { get; } = new();
-
-    NftService nftService;
-    IConnectivity connectivity;
-
-    private int currentIndex = 0;
+    [ObservableProperty]
+    private ICollectionBase currentCollection;
 
     [ObservableProperty]
-    NFT currentNFT;
+    [NotifyPropertyChangedFor(nameof(FloorPriceText))]
+    private BigInteger floorPrice;
 
-    public NftViewModel(NftService nftService, IConnectivity connectivity)
+    public string FloorPriceText => String.Format("Floor price: {0:0.00} DOT", (double)FloorPrice / double.Pow(10, 10));
+
+    // Constructor
+    public NftViewModel()
     {
         Title = "NFT Finder";
-        this.nftService = nftService;
-        this.connectivity = connectivity;
 
-        // Načti NFT při inicializaci
-        LoadNFTsCommand.Execute(null);
+        Task task = InitializeRandomCollectionAsync();
     }
+    // Initialize the first collection
+    private async Task InitializeRandomCollectionAsync()
+    {
+        try
+        {
+            await LoadNextCollectionAsync();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Unable to load NFT: {ex.Message}");
+        }
+    }
+
 
     [ObservableProperty]
     bool isRefreshing;
 
-    // Načítání NFT
-    [RelayCommand]
-    async Task LoadNFTsAsync()
+    async Task LoadNextCollectionAsync()
     {
         if (IsBusy)
             return;
 
         try
         {
-            if (connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                await Shell.Current.DisplayAlert("No connectivity!", "Please check internet and try again.", "OK");
-                return;
-            }
-
             IsBusy = true;
-            var nfts = await nftService.GetNFTs();
 
-            if (NFTs.Count != 0)
-                NFTs.Clear();
+            CurrentCollection = await UniqueryPlusService.GetRandomCollectionAsync();
 
-            foreach (var nft in nfts)
-                NFTs.Add(nft);
+            var fullCollection = await CurrentCollection.GetFullAsync();
 
-            // Zobraz první NFT
-            if (NFTs.Count > 0)
-                CurrentNFT = NFTs[currentIndex];
+            FloorPrice = ((ICollectionStats)fullCollection).FloorPrice;
+
+
+            Console.WriteLine(CurrentCollection.Metadata.Name);
+            Console.WriteLine(CurrentCollection.Metadata.Image);
+
+
         }
         catch (Exception ex)
         {
@@ -66,46 +74,24 @@
 
     // Volba Ano - přidá NFT do oblíbených a zobrazí další
     [RelayCommand]
-    void SelectYes()
+    async Task SelectYesAsync()
     {
-        if (CurrentNFT == null)
-            return;
-
-        FavoriteNFTs.Add(CurrentNFT);
-        NextNFT();
+       
+        await LoadNextCollectionAsync();
     }
 
     // Volba Ne - pouze zobrazí další NFT
     [RelayCommand]
-    void SelectNo()
+   async Task SelectNoAsync()
     {
-        NextNFT();
+      await LoadNextCollectionAsync();
     }
 
-    // Přejde na další NFT v seznamu
-    void NextNFT()
-    {
-        currentIndex++;
-
-        if (currentIndex >= NFTs.Count)
-        {
-            // Konec seznamu
-            currentIndex = 0;
-        }
-
-        CurrentNFT = NFTs[currentIndex];
-    }
 
     [RelayCommand]
-    async Task GoToDetails(NFT nft)
+    async Task GoToDetailsAsync()
     {
-        if (nft == null)
-            return;
-
-        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
-        {
-            {"NFT", nft }
-        });
+        await Task.Delay(1);
     }
 }
 

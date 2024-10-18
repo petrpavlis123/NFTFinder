@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonkeyFinder</name>
+    </assembly>
+    <members>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.Double">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.Monkey">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.ListMonkey">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:MonkeyFinder.Model.MonkeyContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:MonkeyFinder.Model.MonkeyContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MonkeyFinder.Model.MonkeyContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MonkeyFinder.Model.MonkeyContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MonkeyFinder.ViewModel.NftViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:MonkeyFinder.ViewModel.NftViewModel.CurrentCollection">
+            <inheritdoc cref="F:MonkeyFinder.ViewModel.NftViewModel.currentCollection"/>
+        </member>
+        <member name="P:MonkeyFinder.ViewModel.NftViewModel.FloorPrice">
+            <inheritdoc cref="F:MonkeyFinder.ViewModel.NftViewModel.floorPrice"/>
+        </member>
+        <member name="P:MonkeyFinder.ViewModel.NftViewModel.IsRefreshing">
+            <inheritdoc cref="F:MonkeyFinder.ViewModel.NftViewModel.isRefreshing"/>
+        </member>
+        <member name="F:MonkeyFinder.ViewModel.NftViewModel.selectYesCommand">
+            <summary>The backing field for <see cref="P:MonkeyFinder.ViewModel.NftViewModel.SelectYesCommand"/>.</summary>
+        </member>
+        <member name="P:MonkeyFinder.ViewModel.NftViewModel.SelectYesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:MonkeyFinder.ViewModel.NftViewModel.SelectYesAsync"/>.</summary>
+        </member>
+        <member name="F:MonkeyFinder.ViewModel.NftViewModel.selectNoCommand">
+            <summary>The backing field for <see cref="P:MonkeyFinder.ViewModel.NftViewModel.SelectNoCommand"/>.</summary>
+        </member>
+        <member name="P:MonkeyFinder.ViewModel.NftViewModel.SelectNoCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:MonkeyFinder.ViewModel.NftViewModel.SelectNoAsync"/>.</summary>
+        </member>
+        <member name="F:MonkeyFinder.ViewModel.NftViewModel.goToDetailsCommand">
+            <summary>The backing field for <see cref="P:MonkeyFinder.ViewModel.NftViewModel.GoToDetailsCommand"/>.</summary>
+        </member>
+        <member name="P:MonkeyFinder.ViewModel.NftViewModel.GoToDetailsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:MonkeyFinder.ViewModel.NftViewModel.GoToDetailsAsync"/>.</summary>
+        </member>
+        <member name="T:BaseViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:BaseViewModel.IsBusy">
+            <inheritdoc cref="F:BaseViewModel.isBusy"/>
+        </member>
+        <member name="P:BaseViewModel.Title">
+            <inheritdoc cref="F:BaseViewModel.title"/>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Title">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Title" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentCollection">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentCollection" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FloorPrice">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FloorPrice" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsNotBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsNotBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Title">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Title" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentCollection">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentCollection" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FloorPrice">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FloorPrice" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FloorPriceText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FloorPriceText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+    </members>
+</doc>

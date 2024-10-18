@@ -6,24 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using UniqueryPlus.Collections;
 using UniqueryPlus;
+using UniqueryPlus.Nfts;
 
 
 
 namespace MonkeyFinder.Services
-{    internal class UniqueryPlusService
+{
+    public class UniqueryPlusService
     {
-        private SubstrateClientExt client;
-        public UniqueryPlusService(){
-            
-            client = new SubstrateClientExt(new Uri("wss://dot-rpc.stakeworld.io/assethub"), default);
+        private static Queue<ICollectionBase> collections = new Queue<ICollectionBase>();
 
-                    }
-        List<Monkey> nftList;
-        public async Task<List<Monkey>> GetMonkeys()
+        private static SubstrateClientExt client = new SubstrateClientExt(new Uri("wss://dot-rpc.stakeworld.io/assethub"), default);
+        public static async Task<ICollectionBase> GetRandomCollectionAsync()
         {
-            // Pokud již máme seznam NFT, vrátíme ho
-            if (nftList?.Count > 0)
-                return nftList;
+            if (collections.Count() != 0)
+            {
+                return collections.Dequeue();
+            }
 
             // Připojíme klienta, pokud není připojen
             if (!client.IsConnected)
@@ -32,19 +31,10 @@ namespace MonkeyFinder.Services
             // Načtení náhodných kolekcí na prodej
             var randomCollections = await CollectionModel.GetRandomCollectionsForSaleAsync(client, NftTypeEnum.PolkadotAssetHub_NftsPallet, 25);
 
-            // Převedení kolekcí na seznam Monkey
-            nftList = randomCollections.Select(collection => new Monkey
-            {
-                Image = collection.Metadata.Image,
-                Name = collection.Metadata.Name
-            }).ToList(); // Opraveno na správnou syntaxi
+            collections = new Queue<ICollectionBase>(randomCollections);
 
-            return nftList;
+            return collections.Dequeue();
         }
-
-
-
-
-
+    }
 
     }

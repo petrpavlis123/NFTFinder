@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android</TargetFrameworks>
@@ -45,6 +45,6 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
 		<PackageReference Include="Substrate.KusamaAssetHub.NET.Extension" Version="1.9430.0" />
 		<PackageReference Include="Substrate.PolkadotAssetHub.NET.Extension" Version="1.2006.0" />
-		<PackageReference Include="UniqueryPlus" Version="0.1.3" />
+		<PackageReference Include="UniqueryPlus" Version="0.1.5" />
 	</ItemGroup>
 </Project>

@@ -7,58 +7,68 @@
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     ios:Page.UseSafeArea="True"
     Title="NFTs"
-    x:DataType="viewmodel:NftViewModel">
+    BackgroundColor="#123950">
 
-    <Grid
-        ColumnDefinitions="*,*"
-        RowDefinitions="*,Auto"
-        RowSpacing="0">
+    <ContentPage.BindingContext>
+        <viewmodel:NftViewModel />
+    </ContentPage.BindingContext>
 
-        <RefreshView
-            Grid.ColumnSpan="2"
-            Command="{Binding LoadNFTsCommand}"
-            IsRefreshing="{Binding IsRefreshing}">
-            <ContentView>
-                <StackLayout>
-                    <!-- Přidání oblasti pro jedno NFT -->
-                    <Frame x:Name="NftCard" HeightRequest="350" Style="{StaticResource CardView}">
-                        <Frame.GestureRecognizers>
-                            <SwipeGestureRecognizer Direction="Left" Command="{Binding RejectNFTCommand}" />
-                            <SwipeGestureRecognizer Direction="Right" Command="{Binding AcceptNFTCommand}" />
-                        </Frame.GestureRecognizers>
-                        <Grid Padding="0">
-                            <Image
-                                Aspect="AspectFill"
-                                Source="{Binding CurrentNFT.Image}"
-                                HeightRequest="350" />
-                            <VerticalStackLayout
-                                VerticalOptions="End"
-                                Padding="10">
-                                <Label Style="{StaticResource LargeLabel}" Text="{Binding CurrentNFT.Name}" />
-                                <Label Style="{StaticResource MediumLabel}" Text="{Binding CurrentNFT.Description}" />
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Frame>
-                </StackLayout>
-            </ContentView>
-        </RefreshView>
 
-        <Button
-            Grid.Row="1"
-            Grid.Column="0"
-            Margin="8"
-            Command="{Binding LoadNFTsCommand}"
-            IsEnabled="{Binding IsNotBusy}"
-            Style="{StaticResource ButtonOutline}"
-            Text="Get NFTs" />
 
-        <ActivityIndicator
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
-            HorizontalOptions="Fill"
-            IsRunning="{Binding IsBusy}"
-            IsVisible="{Binding IsBusy}"
-            Color="{StaticResource Primary}"
-            VerticalOptions="Center" />
-    </Grid>
+    <ContentView>
+
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, .5, 1, 1"
+                AbsoluteLayout.LayoutFlags="All">
+
+            <Image AbsoluteLayout.LayoutBounds="0.5, .5, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="{Binding CurrentCollection.Metadata.Image}"
+                   />
+
+            <Grid AbsoluteLayout.LayoutBounds=".5, 1, 1, 60"
+                  AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Fuj hnuj"
+                        Grid.Column="0"
+                        TextColor="White"
+                        BackgroundColor="Red"
+                        Command="{Binding SelectNoCommand}"
+                        Margin="10"/>
+
+                <Button Text="I like it"
+                         Grid.Column="1"
+                          TextColor="White"
+                          BackgroundColor="Green"
+                          Command="{Binding SelectNoCommand}"
+                        Margin="10"/>
+
+            </Grid>
+
+            <Label AbsoluteLayout.LayoutBounds="0.5, 1, 1, AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                   Margin="10, 10, 10, 70"
+                   HorizontalTextAlignment="Start"
+                   Text="{Binding CurrentCollection.Metadata.Name}"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                  />
+
+            <Label AbsoluteLayout.LayoutBounds="0.5, 1, 1, AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                   Margin="10, 10, 10, 90"
+                   HorizontalTextAlignment="End"
+                   Text="{Binding FloorPriceText}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    />
+        </AbsoluteLayout>
+
+
+    </ContentView>
+
 </ContentPage>
