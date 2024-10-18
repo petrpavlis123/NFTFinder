@@ -1,6 +1,9 @@
-﻿using System.Net.Http.Json;
+﻿ //using System.Net.Http.Json;
 
-namespace MonkeyFinder.Services;
+
+
+/*namespace MonkeyFinder.Services;
+
 
 public class MonkeyService
 {
@@ -29,6 +32,6 @@ public class MonkeyService
         var contents = await reader.ReadToEndAsync();
         monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonkey);*/
 
-        return monkeyList;
+    /*    return monkeyList;
     }
-}
+} */

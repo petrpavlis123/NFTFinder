@@ -1,6 +1,4 @@
-﻿namespace MonkeyFinder.ViewModel;
-
-[QueryProperty(nameof(Monkey), "Monkey")]
+﻿[QueryProperty(nameof(Monkey), "Monkey")]
 public partial class MonkeyDetailsViewModel : BaseViewModel
 {
     IMap map;
@@ -31,3 +29,4 @@ public partial class MonkeyDetailsViewModel : BaseViewModel
         }
     }
 }
+
