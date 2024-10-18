@@ -44,7 +44,7 @@
                          Grid.Column="1"
                           TextColor="White"
                           BackgroundColor="Green"
-                          Command="{Binding SelectNoCommand}"
+                          Command="{Binding SelectYesCommand}"
                         Margin="10"/>
 
             </Grid>

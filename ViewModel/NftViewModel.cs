@@ -1,6 +1,7 @@
 ﻿using MonkeyFinder.Services;
 using System.Numerics;
 using UniqueryPlus.Collections;
+using UniqueryPlus.External;
 
 namespace MonkeyFinder.ViewModel
 {
@@ -76,8 +77,14 @@ namespace MonkeyFinder.ViewModel
         [RelayCommand]
         async Task SelectYesAsync()
         {
-
-            await LoadNextCollectionAsync();
+            try
+            {
+                await Browser.Default.OpenAsync(new Uri(((IKodaLink)CurrentCollection).KodaLink), BrowserLaunchMode.SystemPreferred);
+            }
+            catch (Exception ex)
+            {
+                // An unexpected error occurred. No browser may be installed on the device.
+            }
         }
 
         // Volba Ne - pouze zobrazí další NFT
