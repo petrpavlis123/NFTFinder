@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonkeyFinder")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+a16b8bbf8b80fb7831ac0f7d8652efa1c23a30f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+dc56156ed0fa342ba7260e6234b93b9c242fdfde")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonkeyFinder")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonkeyFinder")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
